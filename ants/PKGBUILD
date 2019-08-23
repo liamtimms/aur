@@ -1,8 +1,8 @@
 # Maintainer of this PKGBUILD file: Liam Timms <timms5000@gmail.com>
 _pkgname='ants'
 pkgname="${_pkgname}-git"
-pkgver=v2.1.0.r776.g3f5cc924
-pkgrel=2
+pkgver=v2.3.1.r250.g44f1cb82
+pkgrel=1
 pkgdesc='Advanced Normalization Tools (ANTs) computes high-dimensional \
 mappings to capture the statistics of brain structure and function'
 arch=('i686' 'x86_64')
