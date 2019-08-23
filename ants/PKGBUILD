@@ -1,0 +1,53 @@
+# Maintainer of this PKGBUILD file: Liam Timms <timms5000@gmail.com>
+pkgname='ants'
+pkgver=2.3.1
+pkgrel=3
+pkgdesc='A state-of-the-art medical image registration and segmentation toolkit'
+arch=('i686' 'x86_64')
+url='http://www.picsl.upenn.edu/ANTS/'
+license=('Apache')
+depends=('perl' 'insight-toolkit>=5')
+makedepends=('git' 'cmake')
+optdepends=()
+provides=('ants')
+conflicts=('ants-git')
+source=("https://github.com/ANTsX/ANTs/archive/v${pkgver}.tar.gz")
+sha256sums=('c0680feab0ebb85c8cd6685043126666929b35e1cf387a5cc1d3a2d7169bddd3')
+
+prepare() {
+	_builddir="${srcdir}/ANTs-${pkgver}/build"
+	mkdir -p "$_builddir" || :
+
+	cd "$_builddir"
+
+	cmake \
+		-DBUILD_ALL_ANTS_APPS=ON \
+		-DBUILD_SHARED_LIBS=OFF \
+		-DBUILD_STYLE_UTILS=OFF \
+		-DBUILD_TESTING=ON \
+		-DCMAKE_BUILD_TYPE=Release \
+		-DCMAKE_INSTALL_PREFIX=/usr \
+		-DEXTERNAL_PROJECT_BUILD_TYPE=Release \
+		-DFORCE_EXTERNAL_BUILDS=OFF \
+		-DITK_BUILD_MINC_SUPPORT=OFF \
+		-DITK_VERSION_MAJOR=5 \
+		-DOLD_BASELINE_TESTS=OFF \
+		-DRUN_LONG_TESTS=OFF \
+		-DRUN_SHORT_TESTS=ON \
+		-DSuperBuild_ANTS_USE_GIT_PROTOC=ON \
+		-DUSE_SYSTEM_ITK=OFF \
+		-DUSE_SYSTEM_SlicerExecutionMode=OFF \
+		-DUSE_VTK=OFF \
+		..
+}
+
+build() {
+	cd "$_builddir"
+	make
+}
+
+package() {
+	cd "${srcdir}/ANTs-${pkgver}/build"
+	make DESTDIR="${pkgdir}" install
+}
+
