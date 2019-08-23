@@ -13,27 +13,22 @@ makedepends=('git' 'cmake')
 optdepends=()
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
-source=("${pkgname}"'::git+https://github.com/stnava/ANTs.git')
-sha256sums=("SKIP")
+source=("${pkgname}"'::git+https://github.com/ANTsX/ANTs.git')
+sha256sums=('SKIP')
 
 pkgver() {
-  cd "${srcdir}/${pkgname}"
+  cd "${pkgname}"
   git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
-prepare() {
-  cd "${srcdir}/${pkgname}"
-  mkdir -p build
-}
-
 build() {
-  cd "${srcdir}/${pkgname}/build"
+  mkdir -p "${pkgname}/build"
+  cd "${pkgname}/build"
   cmake \
       -DBUILD_ALL_ANTS_APPS=ON \
       -DBUILD_SHARED_LIBS=OFF \
       -DBUILD_STYLE_UTILS=OFF \
       -DBUILD_TESTING=ON \
-      -DCMAKE_BUILD_TYPE=Release \
       -DCMAKE_INSTALL_PREFIX=/usr \
       -DEXTERNAL_PROJECT_BUILD_TYPE=Release \
       -DFORCE_EXTERNAL_BUILDS=OFF \
@@ -43,17 +38,16 @@ build() {
       -DRUN_LONG_TESTS=OFF \
       -DRUN_SHORT_TESTS=ON \
       -DSuperBuild_ANTS_USE_GIT_PROTOC=ON \
-      -DUSE_SYSTEM_ITK=OFF \
+      -DUSE_SYSTEM_ITK=ON \
       -DUSE_SYSTEM_SlicerExecutionMode=OFF \
       -DUSE_VTK=OFF \
       ..
   make
 
 }
-# -DITK_USE_SYSTEM_FFTW=ON
 
 package() {
-  cd "${srcdir}/${pkgname}/build"
+  cd "${pkgname}/build"
   make DESTDIR="${pkgdir}" install
 }
 
