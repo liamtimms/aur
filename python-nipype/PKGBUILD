@@ -14,9 +14,9 @@ pkgdesc='Neuroimaging in python pipelines and interfaces'
 arch=('any')
 url='https://pypi.python.org/pypi/prov/'
 license=('Apache')
-depends=('python-numpy' 'python-numpydoc' 'python-scipy' 'python-networkx' 'python-traits' 'python-dateutil' 'python-nibabel' 'python-future' 'python-simplejson' 'python-prov' 'python-click' 'python-funcsigs' 'python-pytest' 'python-mock' 'python-pydotplus' 'python-pydot' 'python-packaging')
+depends=('python-matplotlib' 'python-numpy' 'python-numpydoc' 'python-scipy' 'python-networkx' 'python-traits' 'python-dateutil' 'python-nibabel' 'python-future' 'python-simplejson' 'python-prov' 'python-click' 'python-funcsigs' 'python-pytest' 'python-mock' 'python-pydotplus' 'python-pydot' 'python-packaging')
 makedepends=('python-sphinx')
-optdepends=('3Dslicer' 'ants-git' 'afni' 'freesurfer' 'fsl' 'spm12')
+optdepends=('3dslicer' 'ants-git' 'afni' 'freesurfer' 'fsl' 'spm12')
 source=("https://github.com/nipy/${_name}/archive/${pkgver}.tar.gz")
 sha256sums=('71bfbe38c54b4bd1162fcffd9a0035c333d73a0161c26822fc33b00af9ebdfcd')
 
@@ -57,13 +57,13 @@ build() {
     make
 }
 
-check() {
-    cd ${srcdir}/${_name}-${pkgver}
-
-    _setpaths
-    echo "MATLABCMD: ${MATLABCMD}"
-    make tests
-}
+#check() {
+#    cd ${srcdir}/${_name}-${pkgver}
+#
+#    _setpaths
+#    echo "MATLABCMD: ${MATLABCMD}"
+#    make tests
+#}
 
 package() {
     cd $srcdir/${_name}-${pkgver}
