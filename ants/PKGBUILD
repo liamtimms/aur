@@ -29,6 +29,7 @@ build() {
       -DBUILD_SHARED_LIBS=OFF \
       -DBUILD_STYLE_UTILS=OFF \
       -DBUILD_TESTING=ON \
+      -DCMAKE_UILD_TYPE=Release \
       -DCMAKE_INSTALL_PREFIX=/usr \
       -DEXTERNAL_PROJECT_BUILD_TYPE=Release \
       -DFORCE_EXTERNAL_BUILDS=OFF \
@@ -38,7 +39,7 @@ build() {
       -DRUN_LONG_TESTS=OFF \
       -DRUN_SHORT_TESTS=ON \
       -DSuperBuild_ANTS_USE_GIT_PROTOC=ON \
-      -DUSE_SYSTEM_ITK=ON \
+      -DUSE_SYSTEM_ITK=OFF \
       -DUSE_SYSTEM_SlicerExecutionMode=OFF \
       -DUSE_VTK=OFF \
       ..
