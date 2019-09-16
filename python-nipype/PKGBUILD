@@ -57,13 +57,13 @@ build() {
     make
 }
 
-#check() {
-#    cd ${srcdir}/${_name}-${pkgver}
-#
-#    _setpaths
-#    echo "MATLABCMD: ${MATLABCMD}"
-#    make tests
-#}
+check() {
+    cd ${srcdir}/${_name}-${pkgver}
+
+    _setpaths
+    echo "MATLABCMD: ${MATLABCMD}"
+    make tests
+}
 
 package() {
     cd $srcdir/${_name}-${pkgver}
