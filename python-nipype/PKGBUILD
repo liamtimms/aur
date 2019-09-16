@@ -8,17 +8,17 @@
 
 pkgname=python-nipype
 _name=${pkgname/python-/}
-pkgver=1.2.1
-pkgrel=4
+pkgver=1.2.2
+pkgrel=5
 pkgdesc='Neuroimaging in python pipelines and interfaces'
 arch=('any')
 url='https://pypi.python.org/pypi/prov/'
 license=('Apache')
 depends=('python-matplotlib' 'python-numpy' 'python-numpydoc' 'python-scipy' 'python-networkx' 'python-traits' 'python-dateutil' 'python-nibabel' 'python-future' 'python-simplejson' 'python-prov' 'python-click' 'python-funcsigs' 'python-pytest' 'python-mock' 'python-pydotplus' 'python-pydot' 'python-packaging')
 makedepends=('python-sphinx')
-optdepends=('3dslicer' 'ants-git' 'afni' 'freesurfer' 'fsl' 'spm12')
+optdepends=('python-dipy' '3dslicer' 'ants-git' 'afni' 'freesurfer' 'fsl' 'spm12')
 source=("https://github.com/nipy/${_name}/archive/${pkgver}.tar.gz")
-sha256sums=('71bfbe38c54b4bd1162fcffd9a0035c333d73a0161c26822fc33b00af9ebdfcd')
+sha256sums=('d20bd3c0e325e0de135f44a4b1af88ff8f5de658f92988346aa304d8c9d4c258')
 
 _setpaths(){
     # Try to auto-detect the matlab install directory
