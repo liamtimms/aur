@@ -10,7 +10,7 @@
 pkgname=python-nipype
 _name=${pkgname/python-/}
 pkgver=1.4.2
-pkgrel=2
+pkgrel=1
 pkgdesc='Neuroimaging in python pipelines and interfaces'
 arch=('any')
 url='https://pypi.python.org/pypi/prov/'
