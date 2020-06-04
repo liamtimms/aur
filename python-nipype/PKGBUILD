@@ -45,6 +45,12 @@ _setpaths(){
 
 }
 
+prepare() {
+    mv 0001-DOC-Skip-BIDSDataGrabber-doctest-if-pybids-is-missin.patch ${srcdir}/${_name}-${pkgver}
+    cd ${srcdir}/${_name}-${pkgver}
+    git apply 0001-DOC-Skip-BIDSDataGrabber-doctest-if-pybids-is-missin.patch
+}
+
 
 build() {
 
