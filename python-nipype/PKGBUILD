@@ -19,7 +19,8 @@ depends=('python-click' 'python-networkx' 'python-nibabel' 'python-numpy' 'pytho
 makedepends=('python-sphinx' 'python-sphinxcontrib-napoleon')
 optdepends=('python-pybids' 'python-dipy' 'ants-git' '3dslicer' 'afni' 'freesurfer' 'fsl' 'spm12')
 source=("${_name}-${pkgver}.tar.gz::https://github.com/nipy/${_name}/archive/${pkgver}.tar.gz" "0001-DOC-Skip-BIDSDataGrabber-doctest-if-pybids-is-missin.patch")
-sha256sums=('dbbe74ac99740da749350a6957326bd78d6ba388694b0c09cd92575f111576af')
+sha256sums=('dbbe74ac99740da749350a6957326bd78d6ba388694b0c09cd92575f111576af'
+            '50dd1c4093399d05fdf0f6558f5d31ef6fdfd30771c23c54314e190e18a217d2')
 
 _setpaths(){
 
