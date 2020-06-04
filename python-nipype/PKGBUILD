@@ -15,7 +15,7 @@ pkgdesc='Neuroimaging in python pipelines and interfaces'
 arch=('any')
 url='https://github.com/nipy/nipype'
 license=('Apache')
-depends=('python-click' 'python-networkx' 'python-nibabel' 'python-numpy' 'python-packaging' 'python-prov' 'python-pydot' 'python-pydotplus' 'python-dateutil' 'python-rdflib>=5.0.0' 'python-scipy' 'python-simplejson' 'python-traits' 'python-filelock' 'python-matplotlib' 'python-numpydoc' 'python-future' 'python-funcsigs' 'python-pytest' 'python-mock' 'python-etelemetry')
+depends=('python-click' 'python-networkx' 'python-nibabel' 'python-numpy' 'python-packaging' 'python-prov' 'python-pydot' 'python-pydotplus' 'python-dateutil' 'python-rdflib>=5.0.0' 'python-scipy' 'python-simplejson' 'python-traits' 'python-filelock' 'python-matplotlib' 'python-numpydoc' 'python-future' 'python-funcsigs' 'python-pytest' 'python-mock' 'python-etelemetry>=0.2.0')
 makedepends=('python-sphinx')
 optdepends=('python-dipy' 'ants-git' '3dslicer' 'afni' 'freesurfer' 'fsl' 'spm12')
 source=("${_name}-${pkgver}.tar.gz::https://github.com/nipy/${_name}/archive/${pkgver}.tar.gz")
@@ -55,6 +55,15 @@ build() {
 
 }
 
+check() {
+
+    cd ${srcdir}/${_name}-${pkgver}
+
+    _setpaths
+    echo "MATLABCMD: ${MATLABCMD}"
+
+    pytest -v --doctest-modules nipype
+}
 
 package() {
 
