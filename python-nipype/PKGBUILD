@@ -10,7 +10,7 @@
 pkgname=python-nipype
 _name=${pkgname/python-/}
 pkgver=1.5.0
-pkgrel=1
+pkgrel=2
 pkgdesc='Neuroimaging in python pipelines and interfaces'
 arch=('any')
 url='https://github.com/nipy/nipype'
