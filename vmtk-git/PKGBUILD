@@ -1,0 +1,71 @@
+# Maintainer: Liam Timms <timms5000@gmail.com>
+# Contributor: Kai Xuan <woxuankai at gmail dot com>
+
+_pkgname='vmtk'
+pkgname="${_pkgname}-git"
+pkgver=v1.4.0.JOSS.r54.gef598de
+pkgrel=1
+pkgdesc='The Vascular Modeling Toolkit'
+arch=('i686' 'x86_64')
+url='https://github.com/vmtk/vmtk'
+license=('BSD')
+depends=('perl' 'insight-toolkit>=5')
+makedepends=('git' 'cmake')
+optdepends=()
+provides=("${_pkgname}")
+conflicts=("${_pkgname}")
+source=("${pkgname}""::git+https://github.com/${_pkgname}/${_pkgname}.git")
+sha256sums=("SKIP")
+
+pkgver() {
+    cd "${srcdir}/${pkgname}"
+    git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+prepare() {
+    cd "${srcdir}/${pkgname}"
+    mkdir -p vmtk-build
+}
+
+build() {
+    cd "${srcdir}/${pkgname}/vmtk-build"
+    cmake \
+      -DBUILD_SHARED_LIBS=ON \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_INSTALL_PREFIX=/opt/vmtk \
+      -DGIT_PROTOCOL_HTTPS=OFF \
+      -DUSE_SYSTEM_ITK=OFF \
+      -DUSE_SYSTEM_VTK=ON \
+      -DVMTK_BUILD_STREAMTRACER=ON \
+      -DVMTK_BUILD_TESTING=OFF \
+      -DVMTK_BUILD_TETGEN=ON \
+      -DVMTK_BUNJEE_BUILD=OFF \
+      -DVMTK_CONTRIB_SCRIPTS=ON \
+      ..
+    make
+}
+
+package() {
+    mkdir -p "${pkgdir}/opt/vmtk"
+    cp -r "${srcdir}/${pkgname}/vmtk-build/Install/bin" "${pkgdir}/opt/vmtk/"
+    cp -r "${srcdir}/${pkgname}/vmtk-build/Install/include" "${pkgdir}/opt/vmtk/"
+    cp -r "${srcdir}/${pkgname}/vmtk-build/Install/ITK" "${pkgdir}/opt/vmtk/"
+    cp -r "${srcdir}/${pkgname}/vmtk-build/Install/lib" "${pkgdir}/opt/vmtk/"
+    cp -r "${srcdir}/${pkgname}/vmtk-build/Install/share" "${pkgdir}/opt/vmtk/"
+    cp -r "${srcdir}/${pkgname}/vmtk-build/Install/vmtk" "${pkgdir}/opt/vmtk/"
+
+    mkdir -p "${pkgdir}/etc/profile.d"
+    cp "${srcdir}/${pkgname}/vmtk-build/Install/vmtk_env.sh" "${pkgdir}/etc/profile.d/"
+    sed -i "s+${srcdir}/${pkgname}/vmtk-build/Install+/opt/vmtk+g" "${pkgdir}/etc/profile.d/vmtk_env.sh"
+
+    # Fix permissions
+    find "${pkgdir}" -type f -exec chmod 644 {} \;
+    find "${pkgdir}" -type d -exec chmod 755 {} \;
+    find "${pkgdir}/opt/vmtk/bin" -exec chmod 755 {} \;
+    find "${pkgdir}/opt/vmtk/vmtk" -exec chmod 755 {} \;
+    chmod 755 "${pkgdir}/etc/profile.d/vmtk_env.sh"
+
+    # Clean up
+    find "${pkgdir}" -empty -delete
+    find "${pkgdir}" -type f -exec sed -i 's^/usr/local/vmtk^/opt/vmtk^g' "{}" \;
+}
