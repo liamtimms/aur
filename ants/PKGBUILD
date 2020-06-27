@@ -24,7 +24,7 @@ prepare() {
 }
 
 build() {
-  cd "${srcdir}/ANTs-${pkgver}/antsBuild"
+  cd "${srcdir}/ANTs-${pkgver}/build"
   cmake \
       -DBUILD_ALL_ANTS_APPS=ON \
       -DBUILD_SHARED_LIBS=OFF \
@@ -42,13 +42,14 @@ build() {
       -DSuperBuild_ANTS_USE_GIT_PROTOC=ON \
       -DUSE_SYSTEM_ITK=OFF \
       -DUSE_SYSTEM_SlicerExecutionMode=OFF \
-      -DCMAKE_INSTALL_PREFIX=/opt/ANTs \
+      -DUSE_SYSTEM_VTK=VTK \
+      -DUSE_VTK=VTK \
       ..
   make
 }
 
 package() {
-  cd "${srcdir}/ANTs-${pkgver}/antsBuild/ANTS-build"
+  cd "${srcdir}/ANTs-${pkgver}/build/ANTS-build"
   make DESTDIR="${pkgdir}" install
 }
 
