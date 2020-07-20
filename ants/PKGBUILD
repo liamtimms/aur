@@ -10,17 +10,17 @@ mappings to capture the statistics of brain structure and function'
 arch=('i686' 'x86_64')
 url='http://www.picsl.upenn.edu/ANTS/'
 license=('Apache')
-depends=('perl' 'insight-toolkit>=5')
+depends=('r' 'vtk' 'perl' 'insight-toolkit>=5')
 makedepends=('git' 'cmake')
 optdepends=()
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
-source=("https://github.com/ANTsX/ANTs/archive/${pkgver}.tar.gz")
-md5sums=('9ced904e1184f6baac3e345144d242f7')
+source=("https://github.com/ANTsX/ANTs/archive/v${pkgver}.tar.gz")
+md5sums=('bdc510c1a816a03377e4c08e69781e84')
 
 prepare() {
   cd "${srcdir}/ANTs-${pkgver}"
-  mkdir -p antsBuild
+  mkdir -p build
 }
 
 build() {
@@ -38,12 +38,12 @@ build() {
       -DITK_VERSION_MAJOR=5 \
       -DOLD_BASELINE_TESTS=OFF \
       -DRUN_LONG_TESTS=OFF \
-      -DRUN_SHORT_TESTS=OFF \
+      -DRUN_SHORT_TESTS=ON \
       -DSuperBuild_ANTS_USE_GIT_PROTOC=ON \
       -DUSE_SYSTEM_ITK=OFF \
       -DUSE_SYSTEM_SlicerExecutionMode=OFF \
-      -DUSE_SYSTEM_VTK=VTK \
-      -DUSE_VTK=VTK \
+      -DUSE_SYSTEM_VTK=ON \
+      -DUSE_VTK=ON \
       ..
   make
 }
