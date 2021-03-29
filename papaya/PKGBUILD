@@ -1,0 +1,53 @@
+# Maintainer: Liam Timms <timms5000@gmail.com>
+
+_pkgname='papaya'
+pkgname="${_pkgname}"
+pkgver=1449
+pkgrel=1
+pkgdesc='A pure JavaScript medical research image viewer.'
+arch=('i686' 'x86_64')
+url='https://github.com/rii-mango/Papaya'
+license=('custom')
+depends=()
+makedepends=('git' 'cmake')
+optdepends=()
+provides=("${_pkgname}")
+conflicts=("${_pkgname}")
+source=("https://github.com/ANTsX/ANTs/archive/v${pkgver}.tar.gz")
+md5sums=('bdc510c1a816a03377e4c08e69781e84')
+
+prepare() {
+  cd "${srcdir}/ANTs-${pkgver}"
+  mkdir -p build
+}
+
+build() {
+  cd "${srcdir}/ANTs-${pkgver}/build"
+  cmake \
+      -DBUILD_ALL_ANTS_APPS=ON \
+      -DBUILD_SHARED_LIBS=OFF \
+      -DBUILD_STYLE_UTILS=OFF \
+      -DBUILD_TESTING=ON \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_INSTALL_PREFIX=/opt/ANTs \
+      -DEXTERNAL_PROJECT_BUILD_TYPE=Release \
+      -DFORCE_EXTERNAL_BUILDS=OFF \
+      -DITK_BUILD_MINC_SUPPORT=OFF \
+      -DITK_VERSION_MAJOR=5 \
+      -DOLD_BASELINE_TESTS=OFF \
+      -DRUN_LONG_TESTS=OFF \
+      -DRUN_SHORT_TESTS=ON \
+      -DSuperBuild_ANTS_USE_GIT_PROTOC=ON \
+      -DUSE_SYSTEM_ITK=OFF \
+      -DUSE_SYSTEM_SlicerExecutionMode=OFF \
+      -DUSE_SYSTEM_VTK=ON \
+      -DUSE_VTK=ON \
+      ..
+  make
+}
+
+package() {
+  cd "${srcdir}/ANTs-${pkgver}/build/ANTS-build"
+  make DESTDIR="${pkgdir}" install
+}
+
