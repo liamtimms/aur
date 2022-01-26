@@ -11,7 +11,7 @@ diff --git a/SuperBuild/External_ITKv5.cmake b/SuperBuild/External_ITKv5.cmake
 index 31cc34e4..a7d046fd 100644
 --- a/SuperBuild/External_ITKv5.cmake
 +++ b/SuperBuild/External_ITKv5.cmake
-@@ -119,6 +119,11 @@ if(NOT DEFINED ${extProjName}_DIR AND NOT ${USE_SYSTEM_${extProjName}})
+@@ -122,6 +122,11 @@ if(NOT DEFINED ${extProjName}_DIR AND NOT ${USE_SYSTEM_${extProjName}})
        -DITK_FUTURE_LEGACY_REMOVE:BOOL=ON
        -DITKV3_COMPATIBILITY:BOOL=OFF
        -DITK_BUILD_DEFAULT_MODULES:BOOL=ON
@@ -23,6 +23,6 @@ index 31cc34e4..a7d046fd 100644
  #      -DITK_MODULE_Core:BOOL=ON
  #      -DITK_MODULE_IO:BOOL=ON
  #      -DITK_MODULE_Filtering:BOOL=ON
--- 
+--
 2.32.0
 

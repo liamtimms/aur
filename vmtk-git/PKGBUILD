@@ -3,7 +3,7 @@
 
 _pkgname='vmtk'
 pkgname="${_pkgname}-git"
-pkgver=v1.4.0.JOSS.r54.gef598de
+pkgver=v1.4.0.JOSS.r55.g63a3b99
 pkgrel=1
 pkgdesc='The Vascular Modeling Toolkit'
 arch=('i686' 'x86_64')

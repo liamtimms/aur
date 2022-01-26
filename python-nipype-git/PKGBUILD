@@ -9,17 +9,22 @@
 
 pkgname=python-nipype
 _name=${pkgname/python-/}
-pkgver=1.7.0
+pkgver=1.7.0.r49.gcd4c34d93
 pkgrel=1
 pkgdesc='Neuroimaging in python pipelines and interfaces'
 arch=('any')
 url='https://github.com/nipy/nipype'
 license=('Apache')
 depends=('python-click' 'python-networkx' 'python-nibabel' 'python-numpy' 'python-packaging' 'python-prov' 'python-pydot' 'python-pydotplus' 'python-dateutil' 'python-rdflib>=5.0.0' 'python-scipy' 'python-simplejson' 'python-traits' 'python-filelock' 'python-matplotlib' 'python-numpydoc' 'python-future' 'python-funcsigs' 'python-pytest' 'python-mock' 'python-etelemetry>=0.2.0')
-makedepends=('python-sphinx' 'python-sphinxcontrib-napoleon')
+makedepends=('python-sphinx' 'python-sphinxcontrib-napoleon-git')
 optdepends=('python-pybids' 'python-dipy' 'ants-git' '3dslicer' 'afni' 'freesurfer' 'fsl' 'spm12')
-source=("${_name}-${pkgver}.tar.gz::https://github.com/nipy/${_name}/archive/${pkgver}.tar.gz")
-sha256sums=('2be7f3d27c2bc65c0f2ff9f4ff0e2d02cb85194b581a1dc26015311f8e684658')
+source=("${_name}::git+https://github.com/nipy/${_name}.git")
+sha256sums=('SKIP')
+
+pkgver() {
+  cd "${srcdir}/${_name}"
+  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
 
 _setpaths(){
 
@@ -47,7 +52,7 @@ _setpaths(){
 
 build() {
 
-    cd ${srcdir}/${_name}-${pkgver}
+    cd ${srcdir}/${_name}
 
     _setpaths
     echo "MATLABCMD: ${MATLABCMD}"
@@ -57,7 +62,7 @@ build() {
 
 check() {
 
-    cd ${srcdir}/${_name}-${pkgver}
+    cd ${srcdir}/${_name}
 
     _setpaths
     echo "MATLABCMD: ${MATLABCMD}"
@@ -67,7 +72,7 @@ check() {
 
 package() {
 
-    cd $srcdir/${_name}-${pkgver}
+    cd $srcdir/${_name}
     python setup.py install --root="${pkgdir}/" --optimize=1
 
 }

@@ -15,8 +15,7 @@ makedepends=('git' 'cmake')
 optdepends=()
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
-source=("${pkgname}"'::git+https://github.com/stnava/ANTs.git'
-        '0001-fix-for-GDCM-build.patch')
+source=("${pkgname}"'::git+https://github.com/SuperElastix/SimpleElastix')
 sha256sums=('SKIP'
             'f20685afed8f3fdc005b7c6924cee39350f0eac1e6010cfe9fee78a517d7e684')
 

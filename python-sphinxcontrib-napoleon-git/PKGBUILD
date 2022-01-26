@@ -1,0 +1,25 @@
+# Maintainer: Maciej Dems <macdems@gmail.com>
+pkgbase='python-sphinxcontrib-napoleon'
+pkgname=('python-sphinxcontrib-napoleon')
+_name='napoleon'
+_module='sphinxcontrib-napoleon'
+pkgver=r138.dce3079
+pkgrel=1
+pkgdesc='Sphinx "napoleon" extension.'
+url="https://sphinxcontrib-napoleon.readthedocs.io"
+license=('BSD')
+arch=('any')
+source=("${_name}::git+https://github.com/sphinx-contrib/${_name}.git")
+sha256sums=('SKIP')
+makedepends=('python-setuptools')
+
+pkgver() {
+  cd "${_name}"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+package_python-sphinxcontrib-napoleon() {
+    depends=('python' 'python-sphinx' 'python-pockets')
+    cd "${_name}"
+    python setup.py install --root="${pkgdir}" --optimize=1
+}

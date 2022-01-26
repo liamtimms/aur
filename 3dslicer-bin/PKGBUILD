@@ -30,7 +30,7 @@ prepare() {
     --pkgdesc "${pkgdesc}" \
     --categories "Graphics;MedicalSoftware;Science;" \
     --icon "${_pkgname}" \
-    --exec "Slicer"
+    --exec "Slicer %F"
 }
 
 package() {
