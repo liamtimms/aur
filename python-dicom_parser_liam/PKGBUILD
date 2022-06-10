@@ -8,7 +8,8 @@ pkgdesc="A library for W3C Provenance Data Model supporting PROV-JSON, PROV-XML 
 arch=('any')
 url='https://pypi.python.org/pypi/prov/'
 license=('MIT')
-depends=('python-pandas')
+optdepends=('python-pandas')
+makedepends=('git' 'python-setuptools')
 source=("${pkgname}::git+https://github.com/open-dicom/${_pypiname}.git")
 sha1sums=('SKIP')
 
