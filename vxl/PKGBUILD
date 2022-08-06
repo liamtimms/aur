@@ -1,3 +1,5 @@
+# Maintainer: liamtimms
+
 pkgname=vxl
 pkgver=3.3.2
 pkgrel=1
@@ -11,18 +13,22 @@ md5sums=('589cdbb5b4c9e6c1203dcbb707527c59')
 
 prepare() {
 	cd "$srcdir/vxl-${pkgver}"
-	grep -lR "std::numeric_limits"|xargs sed -i '1 i\#include <limits>'
 }
 
 build() {
 	cd "$srcdir/vxl-${pkgver}"
-    mkdir -p build
-  	cmake -Wno-dev -DCMAKE_INSTALL_PREFIX=/usr -DBUILD_SHARED_LIBS=ON ..
-	make
+    mkdir -p bin
+    cd bin
+    cmake \
+      -DCMAKE_BUILD_TYPE=Release \
+      -DCMAKE_INSTALL_PREFIX=/usr \
+  	  -DBUILD_SHARED_LIBS=ON \
+      ..
+	make -j1
 }
 
 package() {
-	cd "$srcdir/vxl-${pkgver}/build"
+	cd "$srcdir/vxl-${pkgver}/bin"
     make DESTDIR="$pkgdir" install
 }
 
