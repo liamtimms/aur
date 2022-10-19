@@ -9,17 +9,48 @@
 
 pkgname=python-nipype
 _name=${pkgname/python-/}
-pkgver=1.8.0
+pkgver=1.8.5
 pkgrel=1
 pkgdesc='Neuroimaging in python pipelines and interfaces'
 arch=('any')
 url='https://github.com/nipy/nipype'
 license=('Apache')
-depends=('python-click' 'python-networkx' 'python-nibabel' 'python-numpy' 'python-packaging' 'python-prov' 'python-pydot' 'python-dateutil' 'python-rdflib>=5.0.0' 'python-scipy' 'python-simplejson' 'python-traits' 'python-filelock' 'python-etelemetry>=0.2.0' 'python-matplotlib' 'python-looseversion')
+depends=('python-click' 
+         'python-networkx' 
+         'python-nibabel' 
+         'python-numpy' 
+         'python-packaging' 
+         'python-prov' 
+         'python-pydot' 
+         'python-dateutil' 
+         'python-rdflib>=5.0.0' 
+         'python-scipy' 
+         'python-simplejson' 
+         'python-traits' 
+         'python-filelock' 
+         'python-etelemetry>=0.2.0' 
+         'python-matplotlib' 
+         'python-looseversion')
 makedepends=('python-numpydoc' 'python-sphinx' 'python-sphinxcontrib-napoleon' 'python-future' 'python-funcsigs' 'python-pytest' 'python-mock' )
-optdepends=('python-pybids' 'python-dipy' 'ants' '3dslicer' 'afni' 'freesurfer' 'fsl' 'spm12')
+optdepends=('python-pybids' 
+            'python-dipy' 
+            'ants' 
+            '3dslicer' 
+            'afni' 
+            'freesurfer' 
+            'fsl' 
+            'spm12'
+            'python-nilearn'
+            'python-nitime'
+            'python-nipy'
+            'elastix'
+            'python-pydicom'
+            'dcm2niix'
+            'minc-toolkit'
+            'python-mne'
+            'connectome-workbench')
 source=("${_name}-${pkgver}.tar.gz::https://github.com/nipy/${_name}/archive/${pkgver}.tar.gz")
-sha256sums=('bb6a919c610eb7f1eafcaecff55802028c2caad466dda442611dac5226f19a72')
+sha256sums=('5b6ab317b391e2d8444242166214bf9ed08aab7d75d5831d833ebf685c65efd0')
 
 _setpaths(){
 

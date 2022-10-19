@@ -3,7 +3,7 @@
 
 _pkgname='mrtrix3'
 pkgname="${_pkgname}-git"
-pkgver=3.0.3.r105.gd3941f443
+pkgver=3.0.3.r120.gbb1c2fd44
 pkgrel=1
 pkgdesc="tools for diffusion MRI analyses, data conversion and a viewer (mrview)"
 arch=('x86_64')
