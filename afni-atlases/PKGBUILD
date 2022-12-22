@@ -1,0 +1,22 @@
+# Maintainer: keiichiiownsu12 <zagead@gmail.com>
+# Contributor: Liam Timms <timms5000 gmail.com>
+_localname=afni_atlases_dist
+pkgname=afni-atlases
+pkgver=1.06
+pkgrel=1
+pkgdesc="Collection of atlases for use in AFNI"
+arch=("any")
+url="http://afni.nimh.nih.gov"
+license=('custom')
+depends=()
+optdepends=("afni")
+source=("https://afni.nimh.nih.gov/pub/dist/atlases/afni_atlases_dist.tgz")
+md5sums=("c16e913aac1211ba9cbf4da7c74f927a")
+
+package() {
+    # Clean up
+    rm $srcdir/$_localname/*{html,csh} $srcdir/$_localname/*.txt
+
+    # Install files
+    install -D "$srcdir/$_localname"/* -t "$pkgdir"/opt/afni
+}
