@@ -1,7 +1,8 @@
-# Maintainer: Dario Bosch <LastnameFirstname at gmail dot com>
+# Contributor: Dario Bosch <LastnameFirstname at gmail dot com>
+# Maintainer: Liam TImms < timms5000 [at] gmail dot com >
 
 pkgname=mrtrix3
-pkgver=3.0.3
+pkgver=3.0.4
 pkgrel=1
 pkgdesc="tools for diffusion MRI analyses, data conversion and a viewer (mrview)"
 arch=('x86_64')
@@ -15,6 +16,7 @@ depends=(
         )
 optdepends=(
             'libtiff'
+            'libpng'
             'fftw'
            )
 makedepends=(
@@ -25,7 +27,7 @@ makedepends=(
 provides=('mrtrix3')
 conflicts=('mrtrix3')
 source=("${pkgname}-${pkgver}::https://github.com/MRtrix3/${pkgname}/archive/${pkgver}.tar.gz")
-sha256sums=('6ec7d5a567d8d7338e85575a74565189a26ec8971cbe8fb24a49befbc446542e')
+sha256sums=('f1d1aa289cfc3e46e3a8eca93594b23d061c6d50a0cd03727433a7e2cd14f71a')
 
 build() {
 	cd "${pkgname}-${pkgver}"
@@ -34,7 +36,7 @@ build() {
 }
 
 package() {
-  	cd "${pkgname}-git"
+  	cd "${pkgname}-${pkgver}"
 	mkdir -p "$pkgdir/usr/bin"
 	mkdir -p "$pkgdir/usr/lib"
   	cp -R ./bin/* "$pkgdir/usr/bin"
