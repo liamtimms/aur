@@ -10,7 +10,7 @@ mappings to capture the statistics of brain structure and function'
 arch=('i686' 'x86_64')
 url='http://www.picsl.upenn.edu/ANTS/'
 license=('Apache')
-depends=('r' 'vtk' 'perl' 'insight-toolkit>=5')
+depends=('r' 'perl' 'libxcursor' 'libglvnd')
 makedepends=('git' 'cmake')
 optdepends=()
 provides=("${_pkgname}")

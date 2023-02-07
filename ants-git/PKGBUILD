@@ -3,14 +3,14 @@
 
 _pkgname='ants'
 pkgname="${_pkgname}-git"
-pkgver=2.4.2.r31.g74afcc56
+pkgver=2.4.3.r10.g871cad07
 pkgrel=1
 pkgdesc='Advanced Normalization Tools (ANTs) computes high-dimensional \
 mappings to capture the statistics of brain structure and function'
 arch=('i686' 'x86_64')
 url='http://www.picsl.upenn.edu/ANTS/'
 license=('Apache')
-depends=('libglvnd' 'r' 'perl' 'gdcm' 'cli11' 'utf8cpp')
+depends=('libxcursor' 'libglvnd' 'r' 'perl')
 makedepends=('git' 'cmake' 'boost')
 optdepends=()
 provides=("${_pkgname}=${pkgver}")
@@ -51,7 +51,7 @@ build() {
       -DUSE_SYSTEM_ITK=OFF \
       -DUSE_SYSTEM_SlicerExecutionMode=OFF \
       -DUSE_VTK=ON \
-      -DUSE_SYSTEM_VTK=ON \
+      -DUSE_SYSTEM_VTK=OFF \
       ..
   make
 }
